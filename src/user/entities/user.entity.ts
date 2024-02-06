@@ -1,13 +1,15 @@
+import { OTP } from 'src/otp/entities/otp.entity';
 import {
   Column,
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
 export enum UserType {
-  USER = 'USER',
+  CUSTOMER = 'CUSTOMER',
   ADMIN = 'ADMIN',
 }
 export enum AuthType {
@@ -26,13 +28,13 @@ export class User {
   @Column()
   email: string;
 
-  @Column()
+  @Column({ select: false })
   password: string;
 
   @Column({ default: false, nullable: true })
   isVerified: boolean;
 
-  @Column({ type: 'enum', enum: UserType, default: UserType.USER })
+  @Column({ type: 'enum', enum: UserType, default: UserType.CUSTOMER })
   user_type: UserType;
 
   @Column({ type: 'enum', enum: AuthType, default: AuthType.EMAIL })
@@ -43,4 +45,7 @@ export class User {
 
   @DeleteDateColumn()
   deletedAt: Date;
+
+  @OneToMany(() => OTP, (otp) => otp.user, { cascade: true })
+  otps: OTP[];
 }
