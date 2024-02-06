@@ -6,6 +6,7 @@ import {
   IsNotEmpty,
   IsString,
   IsStrongPassword,
+  MaxLength,
   MinLength,
 } from 'class-validator';
 import { UserType } from 'src/user/entities/user.entity';
@@ -34,6 +35,20 @@ export class CreateUserDTO {
   user_type: UserType;
 }
 
+export class VerifyAccountDto {
+  @IsNotEmpty()
+  @IsEmail()
+  email: string;
+
+  @IsString()
+  @IsNotEmpty()
+  @MinLength(6)
+  @MaxLength(6)
+  otp: string;
+}
+
+export class ResendEmailVerificationOTPDto extends VerifyAccountDto {}
+
 export class LoginUserDTO {
   @IsEmail()
   @Transform(({ value }) => value.toLowerCase())
@@ -47,5 +62,24 @@ export class LoginUserDTO {
   })
   @IsNotEmpty()
   @IsString()
+  password: string;
+}
+
+export class ForgotPasswordRequestDto {
+  @IsNotEmpty()
+  @IsEmail()
+  email: string;
+}
+
+export class ForgotPasswordDto {
+  @IsEmail()
+  email: string;
+
+  @IsString()
+  @MinLength(6)
+  code: string;
+
+  @IsString()
+  @MinLength(8)
   password: string;
 }
