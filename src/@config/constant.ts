@@ -10,3 +10,10 @@ export const DATABASE = {
 };
 
 export const JWT_SECRET = process.env.JWT_SECRET!;
+
+export const SMTP = {
+  user: process.env.SMTP_USER,
+  host: process.env.SMTP_HOST,
+  port: parseInt(process.env.SMTP_PORT),
+  password: process.env.SMTP_PASSWORD,
+};
