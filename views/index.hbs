@@ -1,11 +1,184 @@
 <html lang='en'>
-  <head>
+
+<head>
     <meta charset='UTF-8' />
     <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-    <title>Manakamana Online</title>
-  </head>
-  <body>
-    <h1>{{message}}</h1>
-    <h1>I'am ronim</h1>
+    <title>Manakamana Online | Ecommerce Website</title>
+    <script
+      src="https://kit.fontawesome.com/dca5378fb4.js"
+      crossorigin="anonymous"
+    ></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+    <nav>
+      <div class="container">
+        <div class="row">
+          <div class="left">
+            <p>Support: 9802738584</p>
+            <a href="mailto:manakamanaonline1@gmail.com">manakamanaonline1@gmail.com</a>
+          </div>
+          <div class="right">
+            <a href="/">
+              <li><i class="fa-solid fa-cart-shopping"></i>Cart</li>
+            </a>
+            <a href="/register">
+              <li><i class="fa-solid fa-user"></i>Create Account</li>
+            </a>
+            <a href="/login">
+              <li><i class="fa-solid fa-right-to-bracket"></i>Login</li>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="line"></div>
+    <div class="bottom">
+      <div class="container">
+        <div class="row">
+          <img alt="" src="images/logo.jpg" height="70px">
+          <form>
+            <input type="search" placeholder="Search..." />
+            <button type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="menu">
+      <div class="container">
+        <div class="row">
+          <div class="left" onclick="myFunction()">
+            <i class="fa-solid fa-bars"></i>
+            <div class="dropdown">
+              <p class="category">Category</p>
+              <div class="drop-down" id="drop">
+                <a href="#">
+                  <li>Tools</li>
+                </a>
+                <a href="#">
+                  <li>Electric</li>
+                </a>
+                <a href="#">
+                  <li>Sanitary</li>
+                </a>
+                <a href="#">
+                  <li>Tiles</li>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="right">
+            <a href="/">
+              <li><i class="fa-solid fa-house"></i>Home</li>
+            </a>
+            <a href="#">
+              <li>Products</li>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slide">
+      <div class="container">
+        <div class="slideshow-container">
+          <div class="mySlides fade">
+            <img src="images/image1.webp" style="width: 100%" />
+          </div>
+
+          <div class="mySlides fade">
+            <img src="images/image2.jpg" style="width: 100%" />
+          </div>
+
+          <div class="mySlides fade">
+            <img src="images/image3.jpg" style="width: 100%" />
+          </div>
+          <div class="mySlides fade">
+            <img src="images/image4.jpg" style="width: 100%" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <div class="footer_head">
+        <div class="text">Order best tools at your choices</div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="flexbox">
+            <div class="box">
+              <h1>About Manakamana</h1>
+              <a href="#">
+                <li>
+                  <i class="fa-solid fa-location-dot"></i>Dharan:08,
+                  Nepal
+                </li>
+              </a>
+              <a href="#">
+                <li>
+                  <i class="fa-solid fa-envelope"></i>manakamanaonline1@gmail.com
+                </li>
+              </a>
+              <a href="#">
+                <li><i class="fa-solid fa-phone"></i>9802738584</li>
+              </a>
+            </div>
+            <div class="box1">
+              <h1>Find us on:</h1>
+              <div class="social">
+                <a href="#">
+                  <li>
+                    <i class="fa-brands fa-facebook"></i>
+                  </li>
+                </a>
+                <a href="#">
+                  <li>
+                    <i class="fa-brands fa-whatsapp"></i>
+                  </li>
+                </a>
+                <a href="#">
+                  <li>
+                    <i class="fa-brands fa-twitter"></i>
+                  </li>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer_end">
+        <div class="container">
+          <p>
+            &copy; <a href="#"><strong>Manakamana Online</strong> </a>-All Rights
+            Reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+    <script>
+      function myFunction() {
+        document.getElementById("drop").classList.toggle("show");
+      }
+      let slideIndex = 0;
+      showSlides();
+
+      function showSlides() {
+        let i;
+        let slides = document.getElementsByClassName("mySlides");
+        for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) {
+          slideIndex = 1;
+        }
+
+        slides[slideIndex - 1].style.display = "block";
+        setTimeout(showSlides, 3000); // Change image every 3 second
+      }
+    </script>
   </body>
+
 </html>

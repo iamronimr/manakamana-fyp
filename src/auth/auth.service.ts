@@ -33,7 +33,7 @@ export class AuthService {
       .getRepository(User)
       .findOne({ where: { email: payload.email } });
     if (user) {
-      throw new BadRequestException('The user already exsts.');
+      throw new BadRequestException('The user already exists.');
     }
     const hashedPassword = await argon.hash(payload.password);
     const newUser = new User();
@@ -54,7 +54,7 @@ export class AuthService {
       html: `Your OTP is ${otp.code}`,
     });
 
-    return savedUser;
+    return {message: 'User registered. Check email to verify.'};
   }
 
   async verifyAccount(payload: VerifyAccountDto) {

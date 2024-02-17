@@ -17,7 +17,27 @@ export class AppController {
     const data = {
       pageTitle: 'Login Page',
       welcomeMessage: 'Welcome to the login page!',
-      // Other data you want to pass
+    };
+
+    return data;
+  }
+
+  @Get('/register')
+  @Render('register')
+  getRegisterPage() {
+    const data = {
+      pageTitle: 'Register Page',
+      welcomeMessage: 'Welcome to the register page!',
+    };
+
+    return data;
+  }
+
+  @Get('/verify')
+  @Render('verify')
+  getVerificationPage() {
+    const data = {
+      pageTitle: 'Verify your Account'
     };
 
     return data;

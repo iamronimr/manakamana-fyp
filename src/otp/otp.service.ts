@@ -20,7 +20,7 @@ export class OtpService {
 
     const otp = new OTP();
 
-    otp.code = await generateOTP(6); // generate random 5 digit code
+    otp.code = await generateOTP(6); // generate random 6 digit code
     otp.type = type;
     otp.user_id = user_id;
 
@@ -32,16 +32,16 @@ export class OtpService {
   }
 
   async validateOtp(user_id: string, code: string, type: OTPType) {
-    const expiryTime = 1000 * 60 * 5;
+    // const expiryTime = 1000 * 60 * 5;
 
     const otp = await this.dataSource.getRepository(OTP).findOne({
       where: { user_id, code, type },
     });
     if (!otp) return false;
 
-    if (otp.created_at.getTime() + expiryTime < Date.now()) {
-      throw new BadRequestException('OTP has expired!');
-    }
+    // if (otp.created_at.getTime() + expiryTime < Date.now()) {
+    //   throw new BadRequestException('OTP has expired!');
+    // }
     return true;
   }
 

@@ -4,6 +4,7 @@ import {
   IsEnum,
   IsIn,
   IsNotEmpty,
+  IsOptional,
   IsString,
   IsStrongPassword,
   MaxLength,
@@ -32,6 +33,7 @@ export class CreateUserDTO {
 
   @IsEnum(UserType)
   @IsIn([UserType.ADMIN, UserType.CUSTOMER])
+  @IsOptional()
   user_type: UserType;
 }
 
