@@ -6,6 +6,8 @@ import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TypeOrmConfig } from './@config/typeorm.config';
 import { OtpModule } from './otp/otp.module';
+import { ProductsModule } from './products/products.module';
+import { ServiceprovidersModule } from './serviceproviders/serviceproviders.module';
 
 
 @Module({
@@ -14,6 +16,8 @@ import { OtpModule } from './otp/otp.module';
     AuthModule,
     UserModule,
     OtpModule,
+    ProductsModule,
+    ServiceprovidersModule,
   ],
   controllers: [AppController],
   providers: [AppService],

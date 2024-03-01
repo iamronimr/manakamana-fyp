@@ -176,7 +176,7 @@
                 .then(function(response) {
                 // Handle successful registration response
                 alert(response.data.message)
-                window.location.href = '/verify'
+                console.log(response.data.token);
                 })
                 .catch(function(error) {
                 // Handle registration error

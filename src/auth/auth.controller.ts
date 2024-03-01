@@ -12,7 +12,7 @@ import {
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
-
+ 
   @Post('create-user')
   registerUser(@Body() createUserDto: CreateUserDTO) {
     return this.authService.registerUser(createUserDto);

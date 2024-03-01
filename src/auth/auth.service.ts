@@ -81,7 +81,7 @@ export class AuthService {
       OTPType.emailVerification,
     );
 
-    return `Account verified for ${user.email}`;
+    return {message: `Account verified for ${user.email}`};
   }
 
   async loginUser(payload: LoginUserDTO) {

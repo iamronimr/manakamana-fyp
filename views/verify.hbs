@@ -174,7 +174,9 @@
             axios.post('http://localhost:3000/auth/verify', data)
                 .then(function(response) {
                 // Handle successful verification response
+                console.log(response.data)
                 alert(response.data.message)
+               window.location.href = '/login'
                 })
                 .catch(function(error) {
                 // Handle verification error
