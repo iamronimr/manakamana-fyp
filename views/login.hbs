@@ -75,7 +75,7 @@
             <a href="/">
               <li><i class="fa-solid fa-house"></i>Home</li>
             </a>
-            <a href="#">
+            <a href="/product">
               <li>Products</li>
             </a>
           </div>
@@ -176,7 +176,11 @@
                 .then(function(response) {
                 // Handle successful registration response
                 alert(response.data.message)
-                console.log(response.data.token);
+                localStorage.setItem('token',response.data.token);
+                localStorage.setItem('role', response.data.user_type);
+                if(response.data.user_type === 'ADMIN'){
+                  window.location.href="/admin";
+                }
                 })
                 .catch(function(error) {
                 // Handle registration error

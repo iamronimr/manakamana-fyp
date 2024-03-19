@@ -8,9 +8,11 @@
       src="https://kit.fontawesome.com/dca5378fb4.js"
       crossorigin="anonymous"
     ></script>
+     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+      
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/product.css">
 </head>
 
 <body>
@@ -22,7 +24,7 @@
             <a href="mailto:manakamanaonline1@gmail.com">manakamanaonline1@gmail.com</a>
           </div>
           <div class="right">
-            <a href="/">
+            <a href="#">
               <li><i class="fa-solid fa-cart-shopping"></i>Cart</li>
             </a>
             <a href="/register">
@@ -40,9 +42,9 @@
       <div class="container">
         <div class="row">
           <img alt="" src="images/logo.jpg" height="70px">
-          <form>
+          <form class="search">
             <input type="search" placeholder="Search..." />
-            <button type="submit">Search</button>
+            <button  class="search">Search</button>
           </form>
         </div>
       </div>
@@ -81,27 +83,18 @@
         </div>
       </div>
     </div>
-    <div class="slide">
+     <div class="slide">
       <div class="container">
-        <div class="slideshow-container">
-          <div class="mySlides fade">
-            <img src="images/image1.webp" style="width: 100%" />
+        <p class="product_head">{{pageTitle}}</p>
+        <div id="products">
+        {{!-- <c:forEach items="${productList}" var="product">
+          <div class="product">
+              
           </div>
-
-          <div class="mySlides fade">
-            <img src="images/image2.jpg" style="width: 100%" />
-          </div>
-
-          <div class="mySlides fade">
-            <img src="images/image3.jpg" style="width: 100%" />
-          </div>
-          <div class="mySlides fade">
-            <img src="images/image4.jpg" style="width: 100%" />
-          </div>
+          </c:forEach> --}}
         </div>
       </div>
     </div>
-    
     <footer>
       <div class="footer_head">
         <div class="text">Order best tools at your choices</div>
@@ -158,30 +151,40 @@
         </div>
       </div>
     </footer>
+    
+  </body>
     <script>
-      function myFunction() {
+        function myFunction() {
         document.getElementById("drop").classList.toggle("show");
       }
-      let slideIndex = 0;
-      showSlides();
+        // Fetch products from backend API
+        axios.get('http://localhost:3000/products')
+            .then(function(response) {
+                // Handle successful response
+                const productlist=response.data;
 
-      function showSlides() {
-        let i;
-        let slides = document.getElementsByClassName("mySlides");
-        for (i = 0; i < slides.length; i++) {
-          slides[i].style.display = "none";
-        }
-        slideIndex++;
-        if (slideIndex > slides.length) {
-          slideIndex = 1;
-        }
-
-        slides[slideIndex - 1].style.display = "block";
-        setTimeout(showSlides, 3000); // Change image every 3 second
-      }
+                const productsContainer = document.getElementById('products');
+                productlist.forEach(function(product) {
+                    const productElement = document.createElement('div');
+                    productElement.classList.add('product');
+                    productElement.innerHTML = `
+                        <div class="resp">
+                            <div class="image">
+                                <img src="products/${product.photo}" height="250px" width="200px" />
+                                <button class="addtocartbtn">
+                                    <i class="fa-solid fa-cart-shopping"></i> Add to cart
+                                </button>
+                            </div>
+                        </div>
+                        <div class="detail">${product.productname}</div>
+                        <div class="price"> Price : Rs. ${product.price}</div>
+                    `;
+                    productsContainer.appendChild(productElement);
+                });
+            })
+            .catch(function(error) {
+                // Handle error
+                console.error('Error fetching products:', error);
+            });
     </script>
-  </body>
-
 </html>
-
-

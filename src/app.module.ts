@@ -7,17 +7,24 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { TypeOrmConfig } from './@config/typeorm.config';
 import { OtpModule } from './otp/otp.module';
 import { ProductsModule } from './products/products.module';
-import { ServiceprovidersModule } from './serviceproviders/serviceproviders.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
+import { WorkersModule } from './workers/workers.module';
 
 
 @Module({
   imports: [
     TypeOrmModule.forRootAsync({ useFactory: () => TypeOrmConfig }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..','static'),
+      serveRoot: '/static',
+    }),
     AuthModule,
     UserModule,
     OtpModule,
     ProductsModule,
-    ServiceprovidersModule,
+    WorkersModule,
+    
   ],
   controllers: [AppController],
   providers: [AppService],

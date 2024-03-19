@@ -42,4 +42,46 @@ export class AppController {
 
     return data;
   }
+
+  @Get('/product')
+  @Render('product')
+  getProductPage() {
+    const data = {
+      pageTitle: 'Available Products'
+    };
+
+    return data;
+  }
+
+  @Get('/admin')
+  @Render('admin')
+  getAdminPage() {
+    const data = {
+      pageTitle: 'Admin Dashboard'
+    };
+
+    return data;
+  }
+
+  @Get('/manage_product')
+  @Render('manage_product')
+  getAdminProduct() {
+    const data = {
+      pageTitle: 'Manage Products'
+    };
+
+    return data;
+  }
+
+  @Get('/manage_worker')
+  @Render('manage_worker')
+  getAdminWorker() {
+    const data = {
+      pageTitle: 'Manage Workers'
+    };
+
+    return data;
+  }
+
+  // product_table
 }

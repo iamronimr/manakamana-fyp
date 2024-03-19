@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { DataSource } from 'typeorm';
-import { AddProductDTO } from './dto/product.dto';
+import { AddProductDTO, UpdateProductDto } from './dto/product.dto';
 import { Product } from './entities/product.entity';
 
 @Injectable()
@@ -28,15 +28,18 @@ export class ProductsService {
         return product;
     }
 
-    async updateProductById(id:string,payload: AddProductDTO, file: Express.Multer.File){
+    async updateProductById(id:string,payload: UpdateProductDto, file: Express.Multer.File){
         const product= await this.getProductById(id);
-        product.productname= payload.productname;
-        product.category= payload.category;
-        product.description= payload.description;
-        product.price= payload.price;
-        product.photo= file.filename;
+        product.productname= payload.productname_edit;
+        product.category= payload.category_edit;
+        product.description= payload.description_edit;
+        product.price= payload.price_edit;
+        if(file){
+            product.photo= file.filename;
+        }
 
         const updatedProduct= await this.dataSource.getRepository(Product).save(product);
+        console.log(updatedProduct);
         return {message: 'Product Updated Successfully.', updatedProduct};
     }
 

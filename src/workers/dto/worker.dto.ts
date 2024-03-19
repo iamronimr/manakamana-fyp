@@ -1,35 +1,39 @@
 import { IS_STRING, IsNotEmpty, IsNumber, IsOptional, IsPositive, IsString } from "class-validator";
 
 
+export class AddWorkerDTO{
 
-export class AddProductDTO{
     @IsString()
     @IsNotEmpty()
-    productname: string;
-    
-    @IsString()
-    @IsNotEmpty()
-    category: string;
+    fullname: string;
 
-    @IsNotEmpty()
     @IsString()
+    @IsNotEmpty()
+    address: string;
+
+    @IsString()
+    @IsNotEmpty()
     description: string;
 
-    @IsNotEmpty()
     @IsString()
-    price: string;
+    @IsNotEmpty()
+    contact: string;
 
-    photo: string
+    photo: string;
+
+    @IsString()
+    @IsNotEmpty()
+    servicetype: string;
 }
 
-export class UpdateProductDto{
+export class UpdateWorkerDto{
     @IsString()
     @IsOptional()
-    productname_edit: string;
+    fullname_edit: string;
     
     @IsString()
     @IsOptional()
-    category_edit: string;
+    address_edit: string;
 
     @IsOptional()
     @IsString()
@@ -37,7 +41,11 @@ export class UpdateProductDto{
 
     @IsOptional()
     @IsString()
-    price_edit: string;
+    contact_edit: string;
+
+    @IsOptional()
+    @IsString()
+    servicetype_edit: string;
 
     photo: string;
 }
