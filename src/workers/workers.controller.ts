@@ -1,9 +1,14 @@
-import { BadRequestException, Body, Controller, Delete, Get, Param, ParseUUIDPipe, Patch, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Delete, Get, Param, ParseUUIDPipe, Patch, Post, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
 import { WorkersService } from './workers.service';
-import { AddWorkerDTO, UpdateWorkerDto } from './dto/worker.dto';
+import { AddWorkerDTO, HireWorkerDto, UpdateWorkerDto } from './dto/worker.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import {  filename } from 'file';
+import { JwtAuthGuard } from 'src/@guards/jwt.guard';
+import { RolesGuard } from 'src/@guards/roles.guard';
+import { Roles } from 'src/@decoraters/getRoles.decorater';
+import { UserType } from 'src/user/entities/user.entity';
+import { GetUser } from 'src/@decoraters/getUser.decorater';
 @Controller('workers')
 export class WorkersController {
     constructor(private readonly workerService: WorkersService){
@@ -55,6 +60,13 @@ export class WorkersController {
     @Delete('/:id')
     deleteProduct(@Param('id', new ParseUUIDPipe())id: string){
         return this.workerService.deleteWorkerById(id);
+    }
+
+    @Post('/hire-worker')
+    @UseGuards(JwtAuthGuard,RolesGuard)
+    @Roles(UserType.CUSTOMER)
+    hireWorker(@GetUser('id') customer_id: string, @Body() payload: HireWorkerDto){
+      return this.workerService.hireWorker(payload,customer_id);
     }
 
 }

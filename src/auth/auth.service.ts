@@ -88,7 +88,7 @@ export class AuthService {
     const { email, password } = payload;
     const user = await this.dataSource.getRepository(User).findOne({
       where: { email },
-      select: ['password', 'isVerified', 'user_type'],
+      select: ['id','password', 'isVerified', 'user_type'],
     });
 
     if (!user) {

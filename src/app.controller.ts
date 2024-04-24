@@ -1,36 +1,16 @@
-import { Controller, Get, Render } from '@nestjs/common';
+import { Controller, Get, Render, Res, UseGuards } from '@nestjs/common';
 import { AppService } from './app.service';
+import { JwtAuthGuard } from './@guards/jwt.guard';
+import { Response } from 'express';
 
 @Controller()
-export class AppController {
+export class AppController 
+{
   constructor(private readonly appService: AppService) {}
 
   @Get()
-  @Render('index')
-  root() {
-    return { message: 'Hello from nest js' };
-  }
-
-  @Get('/login')
-  @Render('login')
-  getLoginPage() {
-    const data = {
-      pageTitle: 'Login Page',
-      welcomeMessage: 'Welcome to the login page!',
-    };
-
-    return data;
-  }
-
-  @Get('/register')
-  @Render('register')
-  getRegisterPage() {
-    const data = {
-      pageTitle: 'Register Page',
-      welcomeMessage: 'Welcome to the register page!',
-    };
-
-    return data;
+  root(@Res() res: Response) {
+    return res.render('index')
   }
 
   @Get('/verify')
@@ -49,8 +29,26 @@ export class AppController {
     const data = {
       pageTitle: 'Available Products'
     };
-
     return data;
+  }
+  @Get('/contact')
+  @Render('contact')
+  getContactPage() {
+    const data = {
+      pageTitle: 'Available Products'
+    };
+    return data;
+  }
+
+  
+  @Get('/worker')
+  getWorkerPage(@Res() res: Response) {
+    return res.render('worker')
+  }
+  
+  @Get('/cart')
+  getCartPage(@Res() res: Response) {
+    return res.render('cart')
   }
 
   @Get('/admin')
@@ -82,6 +80,4 @@ export class AppController {
 
     return data;
   }
-
-  // product_table
 }

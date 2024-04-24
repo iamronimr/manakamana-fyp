@@ -53,7 +53,7 @@
     margin-bottom: 10px;
   }
 
-  img{
+  img {
     height: 32px;
     width: auto;
   }
@@ -84,7 +84,7 @@
         </a>
       </li>
       <li>
-        <a href="#">
+        <a href="/manage_customer">
           <i class="bx bx-box"></i>
           <span class="links_name">Customer List</span>
         </a>
@@ -194,7 +194,7 @@
                   <label for="product_image">Product Image</label>
                   <input type="file" id="photo" name="photo" accept="image/x-png,image/gif,image/jpeg" / required />
                 </div>
-              </div>
+            </div>
             <div class="modal-footer">
               <button type="submit" class="btn btn-primary" id="modalfunction">Add</button>
             </div>
@@ -238,7 +238,7 @@
 
                 <div class="form-group">
                   <label for="product_image">Product Image</label>
-                  <input type="file" id="photo" name="photo" accept="image/x-png,image/gif,image/jpeg" / required />
+                  <input type="file" id="photo" name="photo" accept="image/x-png,image/gif,image/jpeg" />
                 </div>
             </div>
             <div class="modal-footer">
@@ -290,6 +290,7 @@
     // for editing products
     document.getElementById('editProduct').addEventListener('submit', function (event) {
       event.preventDefault();
+      console.log('hello');
       const formData = new FormData(event.target);
       const productId = formData.get('editProductId');
       const payload = {
@@ -370,6 +371,7 @@
       // Send Delete request to backend
       axios.delete(`http://localhost:3000/products/${productId}`)
         .then(function (response) {
+          alert(response.data.message)
           window.location.href = "/manage_product"
         })
         .catch(function (error) {

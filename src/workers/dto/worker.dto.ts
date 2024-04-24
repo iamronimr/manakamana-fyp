@@ -49,3 +49,8 @@ export class UpdateWorkerDto{
 
     photo: string;
 }
+export class HireWorkerDto{
+    @IsString()
+    @IsNotEmpty()
+    worker_id: string;
+}

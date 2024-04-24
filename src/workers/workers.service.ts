@@ -1,7 +1,10 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { DataSource } from 'typeorm';
-import { AddWorkerDTO, UpdateWorkerDto } from './dto/worker.dto';
+import { AddWorkerDTO, HireWorkerDto, UpdateWorkerDto } from './dto/worker.dto';
 import {Worker} from './entities/worker.entity'
+import { User } from 'src/user/entities/user.entity';
+import { sendMail } from 'src/@utils/mail';
+import { hireWorkerTemplate } from 'src/@utils/mail-template';
 
 @Injectable()
 export class WorkersService {
@@ -48,5 +51,27 @@ export class WorkersService {
         const worker= await this.getWorkerById(id);
         const deletedWorker= await this.datasource.getRepository(Worker).remove(worker);
         return {message: 'Worker Deleted Successfully', deletedWorker};
+    }
+
+    async hireWorker(payload: HireWorkerDto, customer_id: string){
+        const worker = await this.getWorkerById(payload.worker_id);
+        const customer = await this.datasource.getRepository(User).findOne({where: {id: customer_id}});
+        console.log(customer);
+        console.log(worker);
+
+        const email={
+            workerName: worker.fullname,
+            service: worker.servicetype,
+            workeraddress: worker.address,
+            workercontact: worker.contact,
+            hireby: customer.username,
+            customer_email: customer.email
+        }
+        // send email to admin
+        sendMail({
+            to: 'manakamanaonline1@gmail.com',
+            subject: 'Request for Hiring Your Worker!!.',
+            html: hireWorkerTemplate(email),
+        })
     }
 }

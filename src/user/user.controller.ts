@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseUUIDPipe, Post, UseGuards } from '@nestjs/common';
 import { UserService } from './user.service';
 import { GetUser } from 'src/@decoraters/getUser.decorater';
 import { User, UserType } from './entities/user.entity';
@@ -25,4 +25,15 @@ export class UserController {
   getUsersdetails(@GetUser() user: User) {
     return user;
   }
+
+  @Get()
+  getUsers(){
+      return this.userService.getUsers();
+  }
+
+  @Delete('/:id')
+  deleteUser(@Param('id', new ParseUUIDPipe())id: string){
+      return this.userService.deleteUserById(id);
+  }
+
 }

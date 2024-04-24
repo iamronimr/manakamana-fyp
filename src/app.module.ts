@@ -10,6 +10,9 @@ import { ProductsModule } from './products/products.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { WorkersModule } from './workers/workers.module';
+import { CartsModule } from './carts/carts.module';
+import { ContactsModule } from './contacts/contacts.module';
+import { BookModule } from './book/book.module';
 
 
 @Module({
@@ -24,6 +27,8 @@ import { WorkersModule } from './workers/workers.module';
     OtpModule,
     ProductsModule,
     WorkersModule,
+    CartsModule,    
+    ContactsModule, BookModule,
     
   ],
   controllers: [AppController],

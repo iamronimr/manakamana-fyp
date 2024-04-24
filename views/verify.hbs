@@ -1,187 +1,232 @@
-<html lang='en'>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <meta charset='UTF-8' />
-    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-    <title>Manakamana Online | Ecommerce Website</title>
-    <script
-      src="https://kit.fontawesome.com/dca5378fb4.js"
-      crossorigin="anonymous"
-    ></script>
-     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    <meta charset="utf-8">
+    <title>ManakamanaOnline | EcommerceWebsite</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="css/login.css">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    {{!-- For axios --}}
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/login.css" rel="stylesheet">
 </head>
 
 <body>
-    <nav>
-      <div class="container">
-        <div class="row">
-          <div class="left">
-            <p>Support: 9802738584</p>
-            <a href="mailto:manakamanaonline1@gmail.com">manakamanaonline1@gmail.com</a>
-          </div>
-          <div class="right">
-            <a href="#">
-              <li><i class="fa-solid fa-cart-shopping"></i>Cart</li>
-            </a>
-            <a href="/register">
-              <li><i class="fa-solid fa-user"></i>Create Account</li>
-            </a>
-            <a href="/login">
-              <li><i class="fa-solid fa-right-to-bracket"></i>Login</li>
-            </a>
-          </div>
+  <!-- Topbar Start -->
+  <div class="container-fluid">
+    <div class="row bg-secondary py-2 px-xl-5">
+      <div class="col-lg-6 d-none d-lg-block">
+        <div class="d-inline-flex align-items-center">
+          <a class="text-dark" href="">FAQs</a>
+          <span class="text-muted px-2">|</span>
+          <a class="text-dark" href="">Help</a>
+          <span class="text-muted px-2">|</span>
+          <a class="text-dark" href="">Support</a>
         </div>
       </div>
-    </nav>
-    <div class="line"></div>
-    <div class="bottom">
-      <div class="container">
-        <div class="row">
-          <img alt="" src="images/logo.jpg" height="70px">
-          <form class="search">
-            <input type="search" placeholder="Search..." />
-            <button  class="search">Search</button>
-          </form>
-        </div>
-      </div>
-    </div>
-    <div class="menu">
-      <div class="container">
-        <div class="row">
-          <div class="left" onclick="myFunction()">
-            <i class="fa-solid fa-bars"></i>
-            <div class="dropdown">
-              <p class="category">Category</p>
-              <div class="drop-down" id="drop">
-                <a href="#">
-                  <li>Tools</li>
-                </a>
-                <a href="#">
-                  <li>Electric</li>
-                </a>
-                <a href="#">
-                  <li>Sanitary</li>
-                </a>
-                <a href="#">
-                  <li>Tiles</li>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="right">
-            <a href="/">
-              <li><i class="fa-solid fa-house"></i>Home</li>
-            </a>
-            <a href="/product">
-              <li>Products</li>
-            </a>
-          </div>
+      <div class="col-lg-6 text-center text-lg-right">
+        <div class="d-inline-flex align-items-center">
+          <a class="text-dark px-2" href="">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a class="text-dark px-2" href="">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a class="text-dark px-2" href="">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a class="text-dark px-2" href="">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a class="text-dark pl-2" href="">
+            <i class="fab fa-youtube"></i>
+          </a>
         </div>
       </div>
     </div>
-    <div class="slide">
-      <div class="container">
-        <form  id="verifyForm" method="post">
-          <h2>{{pageTitle}}</h2>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required />
-          </div>
-          <div class="form-group">
-            <label for="otp">Code</label>
-            <input type="text" id="otp" name="otp" required />
-          </div>
-          <button type="submit">Verify</button>
-        </form>
+    <div class="row align-items-center py-3 px-xl-5">
+      <div class="col-lg-3 d-none d-lg-block">
+        <a href="" class="text-decoration-none">
+          <h1 class="m-0 display-5 font-weight-semi-bold"><span
+              class="text-primary font-weight-bold border px-3 mr-1">M</span>anakamana</h1>
+        </a>
       </div>
     </div>
-    <footer>
-      <div class="footer_head">
-        <div class="text">Order best tools at your choices</div>
-      </div>
-      <div class="container">
-        <div class="row">
-          <div class="flexbox">
-            <div class="box">
-              <h1>About Manakamana</h1>
-              <a href="#">
-                <li>
-                  <i class="fa-solid fa-location-dot"></i>Dharan:08,
-                  Nepal
-                </li>
-              </a>
-              <a href="#">
-                <li>
-                  <i class="fa-solid fa-envelope"></i>manakamanaonline1@gmail.com
-                </li>
-              </a>
-              <a href="#">
-                <li><i class="fa-solid fa-phone"></i>9802738584</li>
-              </a>
-            </div>
-            <div class="box1">
-              <h1>Find us on:</h1>
-              <div class="social">
-                <a href="#">
-                  <li>
-                    <i class="fa-brands fa-facebook"></i>
-                  </li>
-                </a>
-                <a href="#">
-                  <li>
-                    <i class="fa-brands fa-whatsapp"></i>
-                  </li>
-                </a>
-                <a href="#">
-                  <li>
-                    <i class="fa-brands fa-twitter"></i>
-                  </li>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="footer_end">
-        <div class="container">
-          <p>
-            &copy; <a href="#"><strong>Manakamana Online</strong> </a>-All Rights
-            Reserved.
-          </p>
-        </div>
-      </div>
-    </footer>
-    
-  </body>
-    <script>
-        function myFunction() {
-        document.getElementById("drop").classList.toggle("show");
-      }
-      document.getElementById('verifyForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-    
-            // Get form data
-            const formData = new FormData(event.target);
-            const data = {
-                email: formData.get('email'),
-                otp: formData.get('otp')
-            };
+  </div>
+  <!-- Topbar End -->
 
-            // Send POST request to backend
-            axios.post('http://localhost:3000/auth/verify', data)
-                .then(function(response) {
-                // Handle successful verification response
-                console.log(response.data)
-                alert(response.data.message)
-               window.location.href = '/login'
-                })
-                .catch(function(error) {
-                // Handle verification error
-                    alert(error.response.data.message)
-                });
-        });
+
+  <div class="slide">
+    <div class="container">
+      <form id="verifyForm" method="post">
+        <h2>{{pageTitle}}</h2>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+        <div class="form-group">
+          <label for="otp">Code</label>
+          <input type="text" id="otp" name="otp" required />
+        </div>
+        <button type="submit">Verify</button>
+      </form>
+    </div>
+  </div>
+
+
+  <!-- Footer Start -->
+  <div class="container-fluid bg-secondary text-dark mt-5 pt-5">
+    <div class="row px-xl-5 pt-5">
+      <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
+        <a href="" class="text-decoration-none">
+          <h1 class="mb-4 display-5 font-weight-semi-bold"><span
+              class="text-primary font-weight-bold border border-white px-3 mr-1">M</span>anakamana</h1>
+        </a>
+        <p>Dolore erat dolor sit lorem vero amet. Sed sit lorem magna, ipsum no sit erat lorem et magna ipsum dolore
+          amet erat.</p>
+        <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>Bargachhi, Dharan, Nepal</p>
+        <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>manakamanaonline1@gmail.com</p>
+        <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>+977 9802738584</p>
+      </div>
+      <div class="col-lg-8 col-md-12">
+        <div class="row">
+          <div class="col-md-4 mb-5">
+            <h5 class="font-weight-bold text-dark mb-4">Quick Links</h5>
+            <div class="d-flex flex-column justify-content-start">
+              <a class="text-dark mb-2" href="index.html"><i class="fa fa-angle-right mr-2"></i>Home</a>
+              <a class="text-dark mb-2" href="shop.html"><i class="fa fa-angle-right mr-2"></i>Products</a>
+              <a class="text-dark mb-2" href="detail.html"><i class="fa fa-angle-right mr-2"></i>Shop Detail</a>
+              <a class="text-dark mb-2" href="cart.html"><i class="fa fa-angle-right mr-2"></i>Shopping Cart</a>
+              <a class="text-dark mb-2" href="checkout.html"><i class="fa fa-angle-right mr-2"></i>Checkout</a>
+              <a class="text-dark" href="contact.html"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>
+            </div>
+          </div>
+          <div class="col-md-4 mb-5">
+            <h5 class="font-weight-bold text-dark mb-4">Quick Links</h5>
+            <div class="d-flex flex-column justify-content-start">
+              <a class="text-dark mb-2" href="index.html"><i class="fa fa-angle-right mr-2"></i>Home</a>
+              <a class="text-dark mb-2" href="shop.html"><i class="fa fa-angle-right mr-2"></i>Products</a>
+              <a class="text-dark mb-2" href="detail.html"><i class="fa fa-angle-right mr-2"></i>Shop Detail</a>
+              <a class="text-dark mb-2" href="cart.html"><i class="fa fa-angle-right mr-2"></i>Shopping Cart</a>
+              <a class="text-dark mb-2" href="checkout.html"><i class="fa fa-angle-right mr-2"></i>Checkout</a>
+              <a class="text-dark" href="contact.html"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>
+            </div>
+          </div>
+          <div class="col-md-4 mb-5">
+            <h5 class="font-weight-bold text-dark mb-4">Newsletter</h5>
+            <form action="">
+              <div class="form-group">
+                <input type="text" class="form-control border-0 py-4" placeholder="Your Name" required="required" />
+              </div>
+              <div class="form-group">
+                <input type="email" class="form-control border-0 py-4" placeholder="Your Email" required="required" />
+              </div>
+              <div>
+                <button class="btn btn-primary btn-block border-0 py-3" type="submit">Subscribe Now</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row border-top border-light mx-xl-5 py-4">
+      <div class="col-md-6 px-xl-0">
+        <p class="mb-md-0 text-center text-md-left text-dark">
+          &copy; <a class="text-dark font-weight-semi-bold" href="#">Manakamana Online</a>. All Rights Reserved.
+          Designed
+          by
+          <a class="text-dark font-weight-semi-bold" href="#">Ronim Rajbhandari</a>
+        </p>
+      </div>
+      <div class="col-md-6 px-xl-0 text-center text-md-right">
+        <img class="img-fluid" src="img/payments.png" alt="">
+      </div>
+    </div>
+  </div>
+  <!-- Footer End -->
+
+
+  <!-- Back to Top -->
+  <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+  <!-- JavaScript Libraries -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+  <script src="lib/easing/easing.min.js"></script>
+  <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+  <!-- Contact Javascript File -->
+  <script src="mail/jqBootstrapValidation.min.js"></script>
+  <script src="mail/contact.js"></script>
+
+  <!-- Template Javascript -->
+  <script src="js/main.js"></script>
+
+   <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        (function () {
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/660d8711a0c6737bd127f53f/1hqidf7ma';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
     </script>
+    <!--End of Tawk.to Script-->
+
+</body>
+
+</html>
+
+<script>
+  function myFunction() {
+    document.getElementById("drop").classList.toggle("show");
+  }
+  document.getElementById('verifyForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    // Get form data
+    const formData = new FormData(event.target);
+    const data = {
+      email: formData.get('email'),
+      otp: formData.get('otp')
+    };
+
+    // Send POST request to backend
+    axios.post('http://localhost:3000/auth/verify', data)
+      .then(function (response) {
+        // Handle successful verification response
+        console.log(response.data)
+        alert(response.data.message)
+        window.location.href = '/'
+      })
+      .catch(function (error) {
+        // Handle verification error
+        alert(error.response.data.message)
+      });
+  });
+</script>
+
 </html>

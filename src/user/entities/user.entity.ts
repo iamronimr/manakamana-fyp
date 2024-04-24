@@ -1,3 +1,5 @@
+import { Book } from 'src/book/entities/book.entity';
+import { Cart } from 'src/carts/entities/cart.entity';
 import { OTP } from 'src/otp/entities/otp.entity';
 import {
   Column,
@@ -48,4 +50,10 @@ export class User {
 
   @OneToMany(() => OTP, (otp) => otp.user, { cascade: true })
   otps: OTP[];
+
+  @OneToMany(() => Cart, (cart) => cart.customer, { cascade: true })
+  carts: Cart[];
+
+  @OneToMany(() => Book, (book) => book.customer, { cascade: true })
+  bookings: Book[];
 }

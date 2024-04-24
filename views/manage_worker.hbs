@@ -53,7 +53,7 @@
     margin-bottom: 10px;
   }
 
-  img{
+  img {
     height: 32px;
     width: auto;
   }
@@ -102,13 +102,13 @@
         </a>
       </li>
       <li>
-        <a href="/manage_product" class="active">
+        <a href="/manage_product">
           <i class="bx bx-coin-stack"></i>
           <span class="links_name">Product List</span>
         </a>
       </li>
       <li>
-        <a href="#">
+        <a href="#" class="active">
           <i class="bx bx-book-alt"></i>
           <span class="links_name">Worker List</span>
         </a>
@@ -147,12 +147,11 @@
       <table class="table">
         <thead class="thead-primary">
           <tr>
-            <th>&nbsp;</th>
+            <th>Image</th>
             <th>Fullname</th>
-            <th>Service Type</th>
-            <th>Description</th>
-            <th>Address</th>
             <th>Contact</th>
+            <th>Service Type</th>
+            <th>Address</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -190,7 +189,7 @@
                   <label for="category">Service Type</label>
                   <input type="text" id="servicetype" name="servicetype" required />
                 </div>
-                  <div class="form-group">
+                <div class="form-group">
                   <label for="category">Address</label>
                   <input type="text" id="address" name="address" required />
                 </div>
@@ -198,7 +197,7 @@
                   <label for="worker_image">Worker Image</label>
                   <input type="file" id="photo" name="photo" required />
                 </div>
-              </div>
+            </div>
             <div class="modal-footer">
               <button type="submit" class="btn btn-primary" id="modalfunction">Add</button>
             </div>
@@ -240,8 +239,7 @@
                   <input type="text" id="servicetype_edit" name="servicetype_edit" />
                 </div>
 
-                </div>
-                  <div class="form-group">
+                <div class="form-group">
                   <label for="address">Address</label>
                   <input type="text" id="address_edit" name="address_edit" required />
                 </div>
@@ -250,11 +248,11 @@
                   <label for="worker_image">Worker Image</label>
                   <input type="file" id="photo" name="photo" />
                 </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary" id="modalfunction">Update</button>
+                </div>
+              </form>
             </div>
-            <div class="modal-footer">
-              <button type="submit" class="btn btn-primary" id="modalfunction">Update</button>
-            </div>
-            </form>
           </div>
         </div>
       </div>
@@ -300,8 +298,9 @@
     // for editing workers
     document.getElementById('editWorker').addEventListener('submit', function (event) {
       event.preventDefault();
+      console.log('hello')
       const formData = new FormData(event.target);
-      const productId = formData.get('editWorkerId');
+      const workerId = formData.get('editWorkerId');
       const payload = {
         fullname_edit: formData.get('fullname_edit'),
         description_edit: formData.get('description_edit'),
@@ -327,25 +326,22 @@
     axios.get('http://localhost:3000/workers')
       .then(function (response) {
 
-        console.log("This is worker" + response.data);
         // Handle successful response
         workerlist = response.data;
-
-        const workers = document.getElementById('data');
+        const workersContainer = document.getElementById('data');
         workerlist.forEach(function (worker) {
           const workerElement = document.createElement('tr');
           workerElement.innerHTML = `
-            <td><img src="products/${worker.photo}" height="250px" width="200px" /></td>
-            <td>${worker.workername}</td>
+            <td><img src="workers/${worker.photo}" height="250px" width="200px" /></td>
+            <td>${worker.fullname}</td>
+            <td>${worker.contact}</td>
             <td>${worker.servicetype}</td>
-            <td>${worker.description}</td>
-            <td>Rs. ${worker.contact}</td>
+            <td>${worker.address}</td>
             <td>
                 <button type="button" class="btn btn-primary btn-sm"  data-toggle="modal" data-target="#editModal" onclick="editWorker('${worker.id}')">Edit</button>
                 <button type="button" class="btn btn-danger btn-sm" onclick="deleteWorker('${worker.id}')">Delete</button>
             </td>
                     `;
-                    console.log("Workererr" + worker.workername)
           workersContainer.appendChild(workerElement);
         });
       })
@@ -355,11 +351,13 @@
       });
 
     function fillEditWorkerModal(worker) {
+      console.log(worker)
       // Fill the input fields with worker data
-      document.getElementById('fullnamename_edit').value = worker.fullname;
+      document.getElementById('fullname_edit').value = worker.fullname;
       document.getElementById('description_edit').value = worker.description;
       document.getElementById('contact_edit').value = worker.contact;
       document.getElementById('servicetype_edit').value = worker.servicetype;
+      document.getElementById('address_edit').value = worker.address;
 
 
       // Change the modal title to indicate editing
@@ -379,10 +377,11 @@
     }
 
     // Function to handle delete worker action
-    function deleteProduct(productId) {
+    function deleteWorker(workerId) {
       // Send Delete request to backend
       axios.delete(`http://localhost:3000/workers/${workerId}`)
         .then(function (response) {
+          alert('Worker Deleted Successfully')
           window.location.href = "/manage_worker"
         })
         .catch(function (error) {

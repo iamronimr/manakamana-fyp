@@ -1,10 +1,11 @@
 import {
   BadRequestException,
   Injectable,
+  NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
 import { DataSource } from 'typeorm';
-import { User } from './entities/user.entity';
+import { User, UserType } from './entities/user.entity';
 import * as argon from 'argon2';
 import { ChangePasswordDto } from './dto/user.dto';
 
@@ -34,5 +35,23 @@ export class UserService {
       .update(user.id, { password: bcryptPassword });
 
     return { message: 'Password Change Sucessfully..' };
+  }
+
+  async getUsers(){
+    const users= await this.dataSource.getRepository(User).find({where:{user_type:UserType.CUSTOMER}});
+    if(!users) throw new BadRequestException('User doesnt exists');
+    return users;
+  }
+
+  async getUserById(id: string){
+    const user= await this.dataSource.getRepository(User).findOne({where: {id: id}});
+    if(!user) throw new NotFoundException('User of this id doesnt exists');
+    return user;
+  }
+
+  async deleteUserById(id: string){
+    const user= await this.getUserById(id);
+    const deletedUser= await this.dataSource.getRepository(User).remove(user);
+    return {message: 'User Deleted Successfully', deletedUser};
   }
 }
